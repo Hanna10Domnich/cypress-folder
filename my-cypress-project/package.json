@@ -1,0 +1,16 @@
+{
+  "name": "my-cypress-project",
+  "version": "1.0.0",
+  "description": "A sample Cypress project for testing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "test:headless": "cypress run"
+  },
+  "dependencies": {
+    "cypress": "^9.0.0"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "MIT"
+}
