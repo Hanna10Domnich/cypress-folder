@@ -1,9 +1,0 @@
-{
-  "baseUrl": "http://localhost:3000",
-  "integrationFolder": "cypress/integration",
-  "fixturesFolder": "cypress/fixtures",
-  "supportFile": "cypress/support/index.js",
-  "viewportWidth": 1280,
-  "viewportHeight": 720,
-  "testFiles": "**/*.*"
-}
