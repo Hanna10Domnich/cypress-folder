@@ -1,4 +1,3 @@
-// This file is intentionally left blank.
 Cypress.Commands.add('getUserDataByRole', (role) => {
     if (!Object.values(userRoles).includes(role)) {
         throw new Error(`Invalid user: ${role}`);
