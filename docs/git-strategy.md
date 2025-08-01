@@ -1,30 +1,27 @@
-# Git Strategy
+# Git Strategy for Automation Framework
 
 ## Branching Model
-- **main**: Stable, production-ready code.
-- **develop**: Integration branch for features and fixes.
-- **feature/\***: New features (merge into `develop`).
-- **bugfix/\***: Bug fixes (merge into `develop`).
-- **hotfix/\***: Critical fixes for production (merge into `main` and `develop`).
+- **main**: Only stable, verified, and production-ready automation test code.
+- **<what-is-planned-to-be-developed>**: For adding new test cases, scenarios, or utilities (merge into `main`).
 
 ## Commit Messages
-- Use clear, concise messages.
-- Follow [Conventional Commits](https://www.conventionalcommits.org/).
+- Write meaningful, concise messages about the essence of the change.
+- Use [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat: add login test`, `fix: update selector for logout`).
 
 ## Pull Requests
-- Create PRs for all changes to `main` and `develop`.
-- Request reviews from at least one team member.
-- Ensure all checks pass before merging.
+- All changes go through a PR to `main`.
+- Assign a reviewer with automation experience.
+- All checks and automated tests must pass before merging.
+- In the PR description, specify related tasks/bugs/test cases.
 
 ## Code Reviews
-- Review for code quality, security, and style.
-- Suggest improvements and ask questions.
-
-## Tagging & Releases
-- Tag releases using [semantic versioning](https://semver.org/).
-- Document changes in `CHANGELOG.md`.
+- Check the reliability, readability, and maintainability of the tests.
+- Ensure there is no hardcoding, flaky patterns, or duplication.
+- Provide suggestions for improvement and ask questions.
 
 ## Best Practices
-- Pull latest changes before starting work.
-- Rebase or merge frequently to avoid conflicts.
-- Do not commit sensitive data or secrets.
+- Pull the latest changes before starting work.
+- Regularly rebase or merge to minimize conflicts.
+- Do not commit sensitive data, passwords, or secrets.
+- Organize test data and selectors for reuse.
+- Document new utilities and approaches within the framework.

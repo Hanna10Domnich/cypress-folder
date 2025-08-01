@@ -1,54 +1,45 @@
-// Login Page UI - Use Cases (Live Documentation)
-// All use cases are defined, but not yet implemented, as per test-writing-guideline.md
+import { loginPage } from '../../support/selectors';
 
-describe('Login Page UI', { testIsolation: false }, () => {
-    // Use Case: Should display the login form
-    it.skip('Should display the login form with username and password fields', () => {
-        // Not implemented yet
-        // HERE ISSUE https://github.com/Hanna10Domnich/cypress-folder/issues/1#issue-3180250938
+describe('LoginPage: login page opened', { testIsolation: false }, () => {
+
+    context('LoginPage: user should review the page', () => {
+
+        it('LoginPage: user should see username field', () => {
+            cy.visit('/');
+            cy.get(loginPage.usernameInput).should('be.visible');
+            cy.get(loginPage.usernameInput)
+                .should('have.attr', 'placeholder')
+                .and('eq', 'Username');
+        });
+        it('LoginPage: user should see password field', () => {
+            cy.get(loginPage.passwordInput).should('be.visible');
+            cy.get(loginPage.passwordInput)
+                .should('have.attr', 'placeholder')
+                .and('eq', 'Password');
+        });
+        it('LoginPage: user should see login button', () => {
+            cy.get(loginPage.loginButton)
+                .should('be.visible')
+                .and('be.enabled')
+                .and('have.attr', 'value', 'Login');
+        });
+
     });
 
-    // Use Case: Should show validation error for empty fields
-    it.skip('Should show validation error when submitting empty fields', () => {
-        // Not implemented yet
-        // HERE ISSUE https://github.com/Hanna10Domnich/cypress-folder/issues/1#issue-3180250938
+    context('LoginPage: user should see error on invalid credentials', () => {
 
+        it('LoginPage: user should see error message for invalid credentials', () => {
+            cy.login('invalid_user', 'invalid_password');
+            cy.get(loginPage.errorMessage).should('be.visible');
+            cy.get(loginPage.errorMessage).should('contain.text', 'Username and password do not match');
+        });
     });
 
-    // Use Case: Should show error for invalid credentials
-    it.skip('Should display an error message for invalid credentials', () => {
-        // Not implemented yet
-        // HERE ISSUE https://github.com/Hanna10Domnich/cypress-folder/issues/1#issue-3180250938
+    context('LoginPage: user shoudld login with valid credentials', () => {
 
-    });
-
-    // Use Case: Should allow successful login with valid credentials
-    it.skip('Should allow login with valid username and password', () => {
-        // Not implemented yet
-    });
-
-    // Use Case: Should have a "Forgot Password" link
-    it.skip('Should display a "Forgot Password" link', () => {
-        // Not implemented yet
-    });
-
-    // Use Case: Should redirect to registration page
-    it.skip('Should redirect to registration page when "Sign Up" is clicked', () => {
-        // Not implemented yet
-    });
-
-    // Use Case: Should toggle password visibility
-    it.skip('Should toggle password visibility when clicking the eye icon', () => {
-        // Not implemented yet
-    });
-
-    // Use Case: Should keep user logged in if "Remember Me" is checked
-    it.skip('Should keep user logged in when "Remember Me" is checked', () => {
-        // Not implemented yet
-    });
-
-    // Use Case: Should display error for locked user
-    it.skip('Should display an error message for a locked user', () => {
-        // Not implemented yet
+        it('LoginPage: user should login and see inventory page', () => {
+            cy.login('standard_user', 'secret_sauce');
+            cy.url().should('include', '/inventory');
+        });
     });
 });
