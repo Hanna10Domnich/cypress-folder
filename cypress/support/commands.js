@@ -1,3 +1,5 @@
+import { loginPage } from './selectors';
+
 Cypress.Commands.add('getUserDataByRole', (role) => {
     if (!Object.values(userRoles).includes(role)) {
         throw new Error(`Invalid user: ${role}`);
@@ -16,5 +18,13 @@ Cypress.Commands.add('getUserDataByRole', (role) => {
         }
         Cypress.env(`${role}-data`, userData);
         return cy.wrap(userData);
+    });
+});
+
+Cypress.Commands.add('login', (username, password) => {
+    cy.get(loginPage.usernameInput).clear().type(username);
+    cy.get(loginPage.passwordInput).clear().type(password);
+    cy.then(() => {
+        cy.get(loginPage.loginButton).click();
     });
 });
