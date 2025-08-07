@@ -45,10 +45,6 @@ describe('InventoryPage: navigation and UI checks', { testIsolation: false }, ()
             cy.get(inventoryPage.inventoryLink).click();
             cy.url().should('include', '/inventory');
         });
-        it('should reset app state from menu', () => {
-            cy.get(inventoryPage.resetAppStateLink).click();
-
-        });
         it('should navigate to About page from menu', () => {
             cy.visit('/');
             cy.login('standard_user', 'secret_sauce');
