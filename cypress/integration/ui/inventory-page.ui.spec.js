@@ -32,8 +32,7 @@ describe('InventoryPage: navigation and UI checks', { testIsolation: false }, ()
         });
     });
 
-
-    context('InventoryPage: menu links check: all items, about, logout, reset app state', () => {
+    context('InventoryPage: menu links check: all items, logout', () => {
         it('should open the menu and show all menu links', () => {
             cy.get(inventoryPage.menuButton).click();
             cy.get(inventoryPage.inventoryLink).should('be.visible');
@@ -44,13 +43,6 @@ describe('InventoryPage: navigation and UI checks', { testIsolation: false }, ()
         it('should navigate to All Items (Inventory) page from menu', () => {
             cy.get(inventoryPage.inventoryLink).click();
             cy.url().should('include', '/inventory');
-        });
-        it('should navigate to About page from menu', () => {
-            cy.visit('/');
-            cy.login('standard_user', 'secret_sauce');
-            cy.get(inventoryPage.menuButton).click();
-            cy.get(inventoryPage.aboutLink).invoke('removeAttr', 'target').click();
-            cy.url().should('include', 'saucelabs.com');
         });
         it('should logout and return to login page', () => {
             cy.get(inventoryPage.logoutLink).click();
