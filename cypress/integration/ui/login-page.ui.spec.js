@@ -11,19 +11,20 @@ describe('LoginPage: login page opened', { testIsolation: false }, () => {
                 .should('have.attr', 'placeholder')
                 .and('eq', 'Username');
         });
+
         it('LoginPage: user should see password field', () => {
             cy.get(loginPage.passwordInput).should('be.visible');
             cy.get(loginPage.passwordInput)
                 .should('have.attr', 'placeholder')
                 .and('eq', 'Password');
         });
+
         it('LoginPage: user should see login button', () => {
             cy.get(loginPage.loginButton)
                 .should('be.visible')
                 .and('be.enabled')
                 .and('have.attr', 'value', 'Login');
         });
-
     });
 
     context('LoginPage: user should see error on invalid credentials', () => {

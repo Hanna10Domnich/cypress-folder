@@ -7,4 +7,16 @@ const loginPage = {
     logoutLink: '#logout_sidebar_link',
 };
 
-export default { loginPage };
+const inventoryPage = {
+    menuButton: '#react-burger-menu-btn',
+    closeMenuButton: '#react-burger-cross-btn',
+    menuPanel: '.bm-menu-wrap',
+    inventoryLink: '#inventory_sidebar_link',
+    aboutLink: '#about_sidebar_link',
+    logoutLink: '#logout_sidebar_link',
+    resetAppStateLink: '#reset_sidebar_link',
+    filterDropdown: '.product_sort_container',
+    inventoryItems: '.inventory_item',
+};
+
+export { loginPage, inventoryPage };
