@@ -8,7 +8,7 @@ describe('InventoryPage: navigation and UI checks', { testIsolation: false }, ()
         cy.url().should('include', '/inventory');
     });
 
-    context('InventoryPage: navigation menu', () => {
+    context('InventoryPage: when user open the inventory page', () => {
 
         it('should display the menu button', () => {
             cy.get(inventoryPage.menuButton).should('be.visible');

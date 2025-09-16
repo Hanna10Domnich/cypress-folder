@@ -28,3 +28,17 @@ Cypress.Commands.add('login', (username, password) => {
         cy.get(loginPage.loginButton).click();
     });
 });
+
+Cypress.Commands.add('addItemToCart', (itemName) => {
+    cy.get('.inventory_item').contains(itemName).parents('.inventory_item').within(() => {
+        cy.get('button[data-test^="add-to-cart"]').click();
+    });
+});
+
+Cypress.Commands.add('removeItemFromCart', (itemName) => {
+    cy.contains(itemName).parentsUntil('body').find('button[data-test^="remove"]').click();
+});
+
+Cypress.Commands.add('verifyItemDisplayed', (itemName) => {
+    cy.contains(itemName).should('be.visible');
+});
