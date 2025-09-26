@@ -1,4 +1,5 @@
 import { loginPage } from './selectors';
+import { itemNameToId } from './test-data/item-mappings';
 
 Cypress.Commands.add('getUserDataByRole', (role) => {
     if (!Object.values(userRoles).includes(role)) {
@@ -30,15 +31,24 @@ Cypress.Commands.add('login', (username, password) => {
 });
 
 Cypress.Commands.add('addItemToCart', (itemName) => {
-    cy.get('.inventory_item').contains(itemName).parents('.inventory_item').within(() => {
-        cy.get('button[data-test^="add-to-cart"]').click();
-    });
+    const itemId = itemNameToId[itemName];
+    if (!itemId) throw new Error(`Unknown item name: ${itemName}`);
+    cy.get(`[data-test="add-to-cart-${itemId}"]`).click();
 });
 
 Cypress.Commands.add('removeItemFromCart', (itemName) => {
-    cy.contains(itemName).parentsUntil('body').find('button[data-test^="remove"]').click();
+    const itemId = itemNameToId[itemName];
+    if (!itemId) throw new Error(`Unknown item name: ${itemName}`);
+    cy.get(`[data-test="remove-${itemId}"]`).click();
 });
 
+// Cypress.Commands.add('verifyItemDisplayed', () => {
+//     cy.get(`[data-test="inventory-item"]`).should('be.visible');
+// });
+
+
 Cypress.Commands.add('verifyItemDisplayed', (itemName) => {
-    cy.contains(itemName).should('be.visible');
+    cy.get('[data-test="inventory-item-name"]')
+        .contains(itemName)
+        .should('be.visible');
 });

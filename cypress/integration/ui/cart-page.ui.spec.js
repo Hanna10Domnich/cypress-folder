@@ -6,8 +6,8 @@ describe('CartPage: user on cart page and it is empty', { testIsolation: false }
     before(() => {
         cy.visit('/');
         cy.login('standard_user', 'secret_sauce');
-    });
 
+    });
 
     context('Cart page: when user added item to the cart', () => {
         before(() => {
@@ -30,9 +30,4 @@ describe('CartPage: user on cart page and it is empty', { testIsolation: false }
             cy.get('.cart_item').should('not.exist');
         });
     });
-
-
-
-
-
 });
