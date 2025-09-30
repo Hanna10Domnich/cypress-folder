@@ -17,6 +17,12 @@ const inventoryPage = {
     resetAppStateLink: '#reset_sidebar_link',
     filterDropdown: '.product_sort_container',
     inventoryItems: '.inventory_item',
+    cartButton: '[data-test="shopping-cart-link"]',
 };
 
-export { loginPage, inventoryPage };
+const cartPage = {
+
+
+};
+
+export { loginPage, inventoryPage, cartPage };

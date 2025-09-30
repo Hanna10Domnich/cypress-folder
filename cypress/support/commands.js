@@ -1,4 +1,5 @@
 import { loginPage } from './selectors';
+import { itemNameToId } from './test-data/item-mappings';
 
 Cypress.Commands.add('getUserDataByRole', (role) => {
     if (!Object.values(userRoles).includes(role)) {
@@ -27,4 +28,22 @@ Cypress.Commands.add('login', (username, password) => {
     cy.then(() => {
         cy.get(loginPage.loginButton).click();
     });
+});
+
+Cypress.Commands.add('addItemToCart', (itemName) => {
+    const itemId = itemNameToId[itemName];
+    if (!itemId) throw new Error(`Unknown item name: ${itemName}`);
+    cy.get(`[data-test="add-to-cart-${itemId}"]`).click();
+});
+
+Cypress.Commands.add('removeItemFromCart', (itemName) => {
+    const itemId = itemNameToId[itemName];
+    if (!itemId) throw new Error(`Unknown item name: ${itemName}`);
+    cy.get(`[data-test="remove-${itemId}"]`).click();
+});
+
+Cypress.Commands.add('verifyItemDisplayed', (itemName) => {
+    cy.get('[data-test="inventory-item-name"]')
+        .contains(itemName)
+        .should('be.visible');
 });
