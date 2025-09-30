@@ -42,11 +42,6 @@ Cypress.Commands.add('removeItemFromCart', (itemName) => {
     cy.get(`[data-test="remove-${itemId}"]`).click();
 });
 
-// Cypress.Commands.add('verifyItemDisplayed', () => {
-//     cy.get(`[data-test="inventory-item"]`).should('be.visible');
-// });
-
-
 Cypress.Commands.add('verifyItemDisplayed', (itemName) => {
     cy.get('[data-test="inventory-item-name"]')
         .contains(itemName)
